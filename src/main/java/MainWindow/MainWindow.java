@@ -17,14 +17,17 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.text.DefaultCaret;
+import Window.SMSContainer;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author rexen
  */
-public class MainWindow extends javax.swing.JFrame implements GSMUtil.NewDataListener {
+public class MainWindow extends javax.swing.JFrame implements GSMUtil.NewDataListener, SMSContainer.smsListener {
 
     private final String serviceAccountDir = "azizelmer-f6f1f-firebase-adminsdk-9q5go-190237b3b6.json";
     javax.swing.JFrame frame;
@@ -35,7 +38,7 @@ public class MainWindow extends javax.swing.JFrame implements GSMUtil.NewDataLis
      */
     public MainWindow() {
         initComponents();
-        DefaultCaret caret = (DefaultCaret)text_log.getCaret();
+        DefaultCaret caret = (DefaultCaret) text_log.getCaret();
         caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
         initFirebase();
         gsmUtil = new GSMUtil(this);
@@ -52,7 +55,7 @@ public class MainWindow extends javax.swing.JFrame implements GSMUtil.NewDataLis
                     .setCredentials(GoogleCredentials.fromStream(serviceAccount))
                     .setDatabaseUrl("https://azizelmer-f6f1f.firebaseio.com")
                     .build();
-            
+
             FirebaseApp.initializeApp(options);
             logText("Connection to database successful");
         } catch (IOException e) {
@@ -113,6 +116,9 @@ public class MainWindow extends javax.swing.JFrame implements GSMUtil.NewDataLis
         jButton4 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         text_log = new javax.swing.JTextArea();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("GSM Server");
@@ -242,7 +248,7 @@ public class MainWindow extends javax.swing.JFrame implements GSMUtil.NewDataLis
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -261,6 +267,20 @@ public class MainWindow extends javax.swing.JFrame implements GSMUtil.NewDataLis
                 .addContainerGap())
         );
 
+        jMenu1.setText("Tools");
+
+        jMenuItem1.setText("Send SMS");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -277,25 +297,28 @@ public class MainWindow extends javax.swing.JFrame implements GSMUtil.NewDataLis
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Thread t = new Thread(() -> {
-            gsmUtil.StartGSM();
-            try {
-                SwingUtilities.invokeAndWait(() -> {
-                    jButton1.setEnabled(false);
-                    jButton2.setEnabled(true);
-                    jLabel2.setText("RUNNING");
-                    jLabel2.setForeground(Color.green);
+            if (!gsmUtil.StartGSM()) {
+                logText("GSM Module not detected");
+            } else {
+                try {
+                    SwingUtilities.invokeAndWait(() -> {
+                        jButton1.setEnabled(false);
+                        jButton2.setEnabled(true);
+                        jLabel2.setText("RUNNING");
+                        jLabel2.setForeground(Color.green);
 
-                });
-            } catch (InterruptedException ex) {
-                Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (InvocationTargetException ex) {
-                Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+                    });
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (InvocationTargetException ex) {
+                    Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                logText("Server Started!");
+                logText("Checking Signal Strength...");
+                gsmUtil.writeGSM("AT+CSQ");
+                logText("Setting GSM to RECEIVING MODE...");
+                gsmUtil.setReceivingMode();
             }
-            logText("Server Started!");
-            logText("Checking Signal Strength...");
-            gsmUtil.writeGSM("AT+CSQ");
-            logText("Setting GSM to RECEIVING MODE...");
-            gsmUtil.setReceivingMode();
         });
         t.start();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -325,6 +348,14 @@ public class MainWindow extends javax.swing.JFrame implements GSMUtil.NewDataLis
         }
         System.exit(0);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        if (gsmUtil.isRunning()) {
+            new SMSContainer(this).setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "GSM Server not running", "Error!", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -368,6 +399,9 @@ public class MainWindow extends javax.swing.JFrame implements GSMUtil.NewDataLis
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -395,6 +429,12 @@ public class MainWindow extends javax.swing.JFrame implements GSMUtil.NewDataLis
     @Override
     public void appendLog(String data) {
         logText(data);
+    }
+
+    @Override
+    public void onSend(String number, String message) {
+        logText("Sending Message to " + number + "\nMessage: " + message);
+        gsmUtil.sendMessage(message, number);
     }
 
 }

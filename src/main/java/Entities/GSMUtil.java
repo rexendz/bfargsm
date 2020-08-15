@@ -53,8 +53,19 @@ public class GSMUtil {
             }
         }
     }
+    
+    public boolean isRunning() {
+        if (gsmPort == null ) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
-    public void StartGSM() {
+    public boolean StartGSM() {
+        if (gsmPort == null) {
+            return false;
+        }
         comPort = SerialPort.getCommPort(gsmPort);
         System.out.println(comPort.getPortDescription());
         comPort.setBaudRate(9600);
@@ -87,10 +98,11 @@ public class GSMUtil {
             }
 
         });
+        return true;
     }
 
     public void readSMS(String data) {
-        smsData = new String[2];
+        smsData = new String[]{"NULL", "NULL"};
         myListener.onSMSReceived(data);
         String sender_number = data.substring(data.indexOf("\"") + 1, data.indexOf("\"", data.indexOf("\"") + 1));
         String recordData = data.substring(data.indexOf("\n", data.indexOf("\n") + 1)).trim();
@@ -153,13 +165,22 @@ public class GSMUtil {
     }
     
     public boolean forwardMessage(FishpondRecord record, String number){
-        writeGSM("AT+CMGF=1");
         writeGSM("AT+CMGS=\"" + number + "\"");
         byte[] b = (record.getSim_number() + ',' + record.getTimestamp() + ',' + record.getPh_level() + ',' + record.getSalinity() + ',' + record.getTemperature() + ',' + record.getDo_level()).getBytes();
         byte[] done = "\u001A".getBytes();
         comPort.writeBytes(b, b.length);
         comPort.writeBytes(done, done.length);
         return true;
+    }
+    
+    public void sendMessage(String message, String number){
+        writeGSM("AT+CMGS=\"" + number + "\"");
+        byte[] b = message.getBytes();
+        byte[] done = "\u001A".getBytes();
+        comPort.writeBytes(b, b.length);
+        comPort.writeBytes(done, done.length);
+        myListener.appendLog("Message Sent");
+        setReceivingMode();
     }
 
     public boolean saveToDatabase(FishpondRecord record) {
@@ -212,7 +233,7 @@ public class GSMUtil {
         try {
             byte[] b = (data + "\r\n").getBytes();
             comPort.writeBytes(b, b.length);
-            Thread.sleep(500);
+            Thread.sleep(800);
         } catch (InterruptedException ex) {
             Logger.getLogger(GSMUtil.class.getName()).log(Level.SEVERE, null, ex);
         }
