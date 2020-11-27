@@ -9,12 +9,9 @@ import com.fazecast.jSerialComm.*;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.DatabaseReference.CompletionListener;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.time.ZonedDateTime;
@@ -29,7 +26,9 @@ public class GSMUtil {
     private String gsmPort;
     private final String descriptor = "USB-SERIAL CH340";
     private NewDataListener myListener;
-    private String[] smsData = {"NULL", "NULL"};
+    private String[] smsData = new String[]{"", "", "", "", "", "", "", "", "", ""};
+	private boolean dataMessage = false;
+	private int dataCounter = 0;
 
     public interface NewDataListener {
 
@@ -86,15 +85,25 @@ public class GSMUtil {
                 int numRead = comPort.readBytes(newData, newData.length);
                 String data = new String(newData, 0, numRead);
                 System.out.println("Data: " + data);
-                if (data.contains("+CMT") && smsData[0].equals("NULL")) {
-                    smsData[0] = data;
-                } else if (smsData[1].equals("NULL") && !smsData[0].equals("NULL")) {
-                    smsData[1] = data;
-                    System.out.println("Message: " + smsData[0] + smsData[1]);
-                    readSMS(smsData[0] + smsData[1]);
-                } else {
+                if (data.contains("+CMT")) {
+					dataCounter = 0;
+                    smsData[dataCounter++] = data;
+					dataMessage = true;
+                } else if (dataMessage == true) {
+					smsData[dataCounter++] = data;
+					if (data.contains("$")) {
+						String concatenatedMessage = "";
+						for (int i = 0; i < dataCounter; i++) {
+							concatenatedMessage += smsData[i];
+						}
+						readSMS(concatenatedMessage);
+					}
+				} else {
                     myListener.onNewData(data);
                 }
+				if (dataMessage == true) {
+					dataCounter++;
+				}
             }
 
         });
@@ -102,10 +111,10 @@ public class GSMUtil {
     }
 
     public void readSMS(String data) {
-        smsData = new String[]{"NULL", "NULL"};
+        smsData = new String[]{"", "", "", "", "", "", "", "", "", ""};
         myListener.onSMSReceived(data);
         String sender_number = data.substring(data.indexOf("\"") + 1, data.indexOf("\"", data.indexOf("\"") + 1));
-        String recordData = data.substring(data.indexOf("\n", data.indexOf("\n") + 1)).trim();
+        String recordData = data.substring(data.indexOf("\n", data.indexOf("\n") + 1), data.length() - 1).trim();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("operator");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

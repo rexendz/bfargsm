@@ -5,7 +5,9 @@
  */
 package MainWindow;
 
+import Entities.Account;
 import Entities.GSMUtil;
+import Window.ActivationContainer;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
@@ -21,17 +23,34 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.text.DefaultCaret;
 import Window.SMSContainer;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.JOptionPane;
+import java.util.List;
 
 /**
  *
  * @author rexen
  */
-public class MainWindow extends javax.swing.JFrame implements GSMUtil.NewDataListener, SMSContainer.smsListener {
+public class MainWindow extends javax.swing.JFrame implements GSMUtil.NewDataListener, SMSContainer.smsListener, ActivationContainer.activationListener {
 
-    private final String serviceAccountDir = "azizelmer-f6f1f-firebase-adminsdk-9q5go-190237b3b6.json";
+    private final String serviceAccountDir = "service-key.json";
     javax.swing.JFrame frame;
     GSMUtil gsmUtil;
+    List<Account> pendingAccounts;
+    boolean started = false;
 
     /**
      * Creates new form MainWindow
@@ -41,8 +60,23 @@ public class MainWindow extends javax.swing.JFrame implements GSMUtil.NewDataLis
         DefaultCaret caret = (DefaultCaret) text_log.getCaret();
         caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
         initFirebase();
+        readFile();
         gsmUtil = new GSMUtil(this);
         this.setResizable(false);
+    }
+    
+    private void readFile() {
+        File f = new File("ACTIVATIONMESSAGE");
+        if (f.isFile()){
+            try{
+                String activationMessage = new String (Files.readAllBytes(Paths.get("ACTIVATIONMESSAGE")));
+                ActivationContainer.setActivationMessage(activationMessage);
+                logText("Activation Message File Found:\n" + activationMessage);
+            } catch(IOException e) {
+                e.printStackTrace();
+            }
+        }
+        
     }
 
     private void initFirebase() {
@@ -58,9 +92,79 @@ public class MainWindow extends javax.swing.JFrame implements GSMUtil.NewDataLis
 
             FirebaseApp.initializeApp(options);
             logText("Connection to database successful");
+            pendingAccounts = new ArrayList<>();
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("account");
+            ref.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot ds) {
+                    
+                    // Keep track of unactivated accounts on startup
+                    if(!started){
+                        for(DataSnapshot snap : ds.getChildren()){
+                            if(!snap.getValue(Account.class).isActivated() && snap.getValue(Account.class).isOperator()) 
+                                pendingAccounts.add(snap.getValue(Account.class));
+                        }
+                        logText("List of unactivated operators: ");
+                        for(Account acc : pendingAccounts){
+                            text_log.append(acc.getUsername() + "\n");
+                        }
+                        started = true;
+                    } else {
+                        for(DataSnapshot snap : ds.getChildren()){
+                            if (!snap.getValue(Account.class).isActivated()) {
+                                if(snap.getValue(Account.class).isOperator()){
+                                    if(pendingAccounts.isEmpty()) {
+                                        pendingAccounts.add(snap.getValue(Account.class));
+                                        logText(snap.getValue(Account.class).getUsername() + "'s account has been deactivated!");
+                                    } else {
+                                        boolean trigger = false;
+                                        for(Account acc : pendingAccounts){
+                                            if(snap.getValue(Account.class).getUsername().equals(acc.getUsername())){
+                                                trigger = true;
+                                            }
+                                        }
+                                        if (!trigger) {
+                                            pendingAccounts.add(snap.getValue(Account.class));
+                                            logText(snap.getValue(Account.class).getUsername() + "'s account has been deactivated!");
+                                        }
+                                    }
+                                    
+                                }
+                            } else {
+                                for(Account acc : pendingAccounts){
+                                    if(snap.getValue(Account.class).getUsername().equals(acc.getUsername())){
+                                        if(snap.getValue(Account.class).isActivated() && !acc.isActivated()){
+                                            pendingAccounts.remove(acc);
+                                            logText(acc.getUsername() + "'s account has been activated!");
+                                            notifyUser(acc);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                            
+                    }
+                    
+          
+                }
+
+                @Override
+                public void onCancelled(DatabaseError de) {
+                }
+            });
+            
         } catch (IOException e) {
             logText("ERROR CONNECTING TO DATABASE!");
             System.out.println("There seems to be an error...");
+        }
+    }
+    
+    public void notifyUser(Account user){
+        if(gsmUtil.isRunning()) {
+            logText("Notifying " + user.getUsername() + "...\nSending notification to the number: " + user.getSim1());
+            gsmUtil.sendMessage(ActivationContainer.getActivationMessage(), user.getSim1());
+        } else {
+            logText("GSM Server has not been started.\nCannot notify " + user.getUsername() + " that his/her account has been activated");
         }
     }
 
@@ -119,6 +223,8 @@ public class MainWindow extends javax.swing.JFrame implements GSMUtil.NewDataLis
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("GSM Server");
@@ -217,6 +323,7 @@ public class MainWindow extends javax.swing.JFrame implements GSMUtil.NewDataLis
         text_log.setEditable(false);
         text_log.setColumns(20);
         text_log.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
+        text_log.setLineWrap(true);
         text_log.setRows(5);
         jScrollPane1.setViewportView(text_log);
 
@@ -276,6 +383,22 @@ public class MainWindow extends javax.swing.JFrame implements GSMUtil.NewDataLis
             }
         });
         jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("Save Log");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
+        jMenuItem3.setText("Change Activation Message");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem3);
 
         jMenuBar1.add(jMenu1);
 
@@ -357,6 +480,22 @@ public class MainWindow extends javax.swing.JFrame implements GSMUtil.NewDataLis
         }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        
+        try (PrintWriter out = new PrintWriter(new FileWriter("log.txt"))){
+            text_log.write(out);
+            logText("Log saved as " + System.getProperty("user.dir") + "\\log.txt");
+        } catch (IOException e){
+            System.err.println("Error occurred: " + e);
+        }
+        
+        
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        new ActivationContainer(this).setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -402,6 +541,8 @@ public class MainWindow extends javax.swing.JFrame implements GSMUtil.NewDataLis
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -435,6 +576,16 @@ public class MainWindow extends javax.swing.JFrame implements GSMUtil.NewDataLis
     public void onSend(String number, String message) {
         logText("Sending Message to " + number + "\nMessage: " + message);
         gsmUtil.sendMessage(message, number);
+    }
+
+    @Override
+    public void onSet(String message) {
+        logText("Activation Message changed to:\n" + message);
+    }
+
+    @Override
+    public void onReset() {
+        logText("Activation Message has been reset");
     }
 
 }

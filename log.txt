@@ -1,0 +1,6 @@
+2020-11-27 23:48:20 (SYSTEM): Connection to database successful
+2020-11-27 23:48:21 (SYSTEM): GSM Module not detected
+2020-11-27 23:48:21 (SYSTEM): GSM Module not detected
+2020-11-27 23:48:21 (SYSTEM): GSM Module not detected
+2020-11-27 23:48:24 (SYSTEM): List of unactivated operators: 
+azizessenin
