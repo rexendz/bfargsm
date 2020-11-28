@@ -26,6 +26,7 @@ public class GSMUtil {
     private String gsmPort;
     private final String descriptor = "USB-SERIAL CH340";
     private NewDataListener myListener;
+    private boolean gsmStatus = false;
     private String[] smsData = new String[]{"", "", "", "", "", "", "", "", "", ""};
 	private boolean dataMessage = false;
 	private int dataCounter = 0;
@@ -54,7 +55,7 @@ public class GSMUtil {
     }
     
     public boolean isRunning() {
-        if (gsmPort == null ) {
+        if (gsmPort == null || gsmStatus == false ) {
             return false;
         } else {
             return true;
@@ -65,6 +66,7 @@ public class GSMUtil {
         if (gsmPort == null) {
             return false;
         }
+        gsmStatus = true;
         comPort = SerialPort.getCommPort(gsmPort);
         System.out.println(comPort.getPortDescription());
         comPort.setBaudRate(9600);
@@ -256,6 +258,7 @@ public class GSMUtil {
 
     public void StopGSM() {
         comPort.closePort();
+        gsmStatus = false;
     }
 
     public boolean portIsOpen() {

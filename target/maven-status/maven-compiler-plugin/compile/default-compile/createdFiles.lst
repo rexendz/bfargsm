@@ -20,6 +20,7 @@ Window\SMSContainer$smsListener.class
 Entities\FishpondOperator.class
 MainWindow\MainWindow$8.class
 MainWindow\MainWindow$6.class
+Window\ActivationContainer$activationListener.class
 MainWindow\MainWindow$1.class
 Window\SMSContainer.class
 Entities\GSMUtil$2.class
