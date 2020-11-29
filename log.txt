@@ -4,3 +4,37 @@
 2020-11-27 23:48:21 (SYSTEM): GSM Module not detected
 2020-11-27 23:48:24 (SYSTEM): List of unactivated operators: 
 azizessenin
+2020-11-29 17:26:01 (SYSTEM): Connection to database successful
+2020-11-29 17:26:01 (SYSTEM): Activation Message File Found:
+[BFAR] This message is to notify you that your operator account in the BFAR System has been activated.
+
+Please do not reply to this number.
+2020-11-29 17:26:07 (SYSTEM): List of unactivated operators: 
+2020-11-29 17:26:01 (SYSTEM): Connection to database successful
+2020-11-29 17:26:01 (SYSTEM): Activation Message File Found:
+[BFAR] This message is to notify you that your operator account in the BFAR System has been activated.
+
+Please do not reply to this number.
+2020-11-29 17:26:07 (SYSTEM): List of unactivated operators: 
+2020-11-29 17:26:27 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\log.txt
+2020-11-29 17:26:01 (SYSTEM): Connection to database successful
+2020-11-29 17:26:01 (SYSTEM): Activation Message File Found:
+[BFAR] This message is to notify you that your operator account in the BFAR System has been activated.
+
+Please do not reply to this number.
+2020-11-29 17:26:07 (SYSTEM): List of unactivated operators: 
+2020-11-29 17:26:27 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\log.txt
+2020-11-29 17:26:48 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\log.txt
+2020-11-29 17:30:00 (SYSTEM): Connection to database successful
+2020-11-29 17:30:00 (SYSTEM): Activation Message File Found:
+[BFAR] This message is to notify you that your operator account in the BFAR System has been activated.
+
+Please do not reply to this number.
+2020-11-29 17:30:04 (SYSTEM): List of unactivated operators: 
+2020-11-29 17:30:05 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\log.txt
+2020-11-29 18:39:22 (SYSTEM): Connection to database successful
+2020-11-29 18:39:22 (SYSTEM): Activation Message File Found:
+[BFAR] This message is to notify you that your operator account in the BFAR System has been activated.
+
+Please do not reply to this number.
+2020-11-29 18:39:27 (SYSTEM): List of unactivated operators: 

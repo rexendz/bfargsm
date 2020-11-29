@@ -1,0 +1,200 @@
+2020-11-29 18:49:53 (SYSTEM): Connection to database successful
+2020-11-29 18:49:53 (SYSTEM): Activation Message File Found:
+[BFAR] This message is to notify you that your operator account in the BFAR System has been activated.
+
+Please do not reply to this number.
+2020-11-29 18:49:59 (SYSTEM): List of unactivated operators: 
+2020-11-29 18:54:08 (SYSTEM): Connection to database successful
+2020-11-29 18:54:08 (SYSTEM): Activation Message File Found:
+[BFAR] This message is to notify you that your operator account in the BFAR System has been activated.
+
+Please do not reply to this number.
+2020-11-29 18:54:22 (SYSTEM): Connection to database successful
+2020-11-29 18:54:22 (SYSTEM): Activation Message File Found:
+[BFAR] This message is to notify you that your operator account in the BFAR System has been activated.
+
+Please do not reply to this number.
+2020-11-29 18:54:27 (SYSTEM): List of unactivated operators: 
+2020-11-29 18:54:53 (SYSTEM): Connection to database successful
+2020-11-29 18:54:53 (SYSTEM): Activation Message File Found:
+[BFAR] This message is to notify you that your operator account in the BFAR System has been activated.
+
+Please do not reply to this number.
+2020-11-29 19:00:33 (SYSTEM): Connection to database successful
+2020-11-29 19:00:33 (SYSTEM): Activation Message File Found:
+[BFAR] This message is to notify you that your operator account in the BFAR System has been activated.
+
+Please do not reply to this number.
+2020-11-29 19:00:51 (SYSTEM): Connection to database successful
+2020-11-29 19:00:51 (SYSTEM): Activation Message File Found:
+[BFAR] This message is to notify you that your operator account in the BFAR System has been activated.
+
+Please do not reply to this number.
+2020-11-29 19:00:56 (SYSTEM): List of unactivated operators: 
+2020-11-29 19:04:18 (SYSTEM): Connection to database successful
+2020-11-29 19:04:18 (SYSTEM): Activation Message File Found:
+[BFAR] This message is to notify you that your operator account in the BFAR System has been activated.
+
+Please do not reply to this number.
+2020-11-29 19:04:18 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 19:04:19 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 19:04:20 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 19:04:21 (SYSTEM): List of unactivated operators: 
+2020-11-29 19:04:21 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 19:04:22 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 19:04:23 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 19:04:24 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 19:04:25 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 19:04:26 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 19:04:27 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 19:04:28 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 19:04:29 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 19:04:30 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 19:04:31 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 19:04:32 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 19:04:33 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 19:04:34 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 19:04:35 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 19:04:36 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 19:04:37 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 19:04:38 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 19:04:39 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 19:04:40 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 19:04:41 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 19:04:42 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 19:04:43 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 19:04:44 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 19:04:45 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 19:04:46 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 19:04:47 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 19:32:36 (SYSTEM): Connection to database successful
+2020-11-29 19:32:36 (SYSTEM): Activation Message File Found:
+[BFAR] This message is to notify you that your operator account in the BFAR System has been activated.
+
+Please do not reply to this number.
+2020-11-29 19:32:51 (SYSTEM): Connection to database successful
+2020-11-29 19:32:51 (SYSTEM): Activation Message File Found:
+[BFAR] This message is to notify you that your operator account in the BFAR System has been activated.
+
+Please do not reply to this number.
+2020-11-29 20:22:36 (SYSTEM): Connection to database successful
+2020-11-29 20:22:36 (SYSTEM): Settings file found. Preferences Applied.
+2020-11-29 20:22:36 (SYSTEM): Activation Message File Found:
+[BFAR] This message is to notify you that your operator account in the BFAR System has been activated.
+
+Please do not reply to this number.
+2020-11-29 20:22:41 (SYSTEM): List of unactivated operators: 
+2020-11-29 20:33:42 (SYSTEM): Connection to database successful
+2020-11-29 20:33:42 (SYSTEM): Settings file found. Preferences Applied.
+2020-11-29 20:33:46 (SYSTEM): List of unactivated operators: 
+2020-11-29 21:06:57 (SYSTEM): Connection to database successful
+2020-11-29 21:06:57 (SYSTEM): Settings file found. Preferences Applied.
+2020-11-29 21:07:01 (SYSTEM): List of unactivated operators: 
+2020-11-29 21:09:00 (SYSTEM): Connection to database successful
+2020-11-29 21:09:00 (SYSTEM): Settings file found. Preferences Applied.
+2020-11-29 21:09:03 (SYSTEM): List of unactivated operators: 
+2020-11-29 21:09:47 (SYSTEM): Connection to database successful
+2020-11-29 21:09:47 (SYSTEM): Settings file found. Preferences Applied.
+2020-11-29 21:09:50 (SYSTEM): List of unactivated operators: 
+2020-11-29 21:10:05 (SYSTEM): Connection to database successful
+2020-11-29 21:10:05 (SYSTEM): Settings file found. Preferences Applied.
+2020-11-29 21:10:10 (SYSTEM): List of unactivated operators: 
+2020-11-29 21:12:25 (SYSTEM): Connection to database successful
+2020-11-29 21:12:25 (SYSTEM): Settings file found. Preferences Applied.
+2020-11-29 21:12:29 (SYSTEM): List of unactivated operators: 
+2020-11-29 21:25:58 (SYSTEM): Connection to database successful
+2020-11-29 21:25:58 (SYSTEM): Settings file found. Preferences Applied.
+2020-11-29 21:26:03 (SYSTEM): List of unactivated operators: 
+2020-11-29 21:26:05 (SYSTEM): Activation Message changed to:
+
+2020-11-29 21:29:19 (SYSTEM): Connection to database successful
+2020-11-29 21:29:19 (SYSTEM): Settings file found. Preferences Applied.
+2020-11-29 21:29:42 (SYSTEM): Connection to database successful
+2020-11-29 21:29:42 (SYSTEM): Settings file found. Preferences Applied.
+2020-11-29 21:29:45 (SYSTEM): List of unactivated operators: 
+2020-11-29 21:29:52 (SYSTEM): Settings Changed
+2020-11-29 21:30:52 (SYSTEM): Connection to database successful
+2020-11-29 21:30:52 (SYSTEM): Settings file found. Preferences Applied.
+2020-11-29 21:30:55 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:30:56 (SYSTEM): List of unactivated operators: 
+2020-11-29 21:30:58 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:31:01 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:31:04 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:31:07 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:31:10 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:31:13 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:31:16 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:31:17 (SYSTEM): Settings Changed
+2020-11-29 21:32:01 (SYSTEM): Connection to database successful
+2020-11-29 21:32:01 (SYSTEM): Settings file found. Preferences Applied.
+2020-11-29 21:32:05 (SYSTEM): Settings Changed
+2020-11-29 21:32:05 (SYSTEM): List of unactivated operators: 
+2020-11-29 21:32:06 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:32:07 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:32:08 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:32:09 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:32:10 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:32:11 (SYSTEM): Settings Changed
+2020-11-29 21:32:21 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:32:24 (SYSTEM): Settings Changed
+2020-11-29 21:32:31 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:32:41 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:33:32 (SYSTEM): Connection to database successful
+2020-11-29 21:33:32 (SYSTEM): Settings file found. Preferences Applied.
+2020-11-29 21:33:37 (SYSTEM): List of unactivated operators: 
+2020-11-29 21:33:40 (SYSTEM): Settings Changed
+2020-11-29 21:33:43 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:33:46 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:33:48 (SYSTEM): Settings Changed
+2020-11-29 21:33:49 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:33:52 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:33:55 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:35:40 (SYSTEM): Connection to database successful
+2020-11-29 21:35:40 (SYSTEM): Settings file found. Preferences Applied.
+2020-11-29 21:35:44 (SYSTEM): List of unactivated operators: 
+2020-11-29 21:35:48 (SYSTEM): Settings Changed
+2020-11-29 21:35:49 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:35:50 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:35:51 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:35:52 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:35:53 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:35:54 (SYSTEM): Settings Changed
+2020-11-29 21:35:57 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:35:59 (SYSTEM): Settings Changed
+2020-11-29 21:36:00 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:36:03 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:36:06 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:36:57 (SYSTEM): Connection to database successful
+2020-11-29 21:36:57 (SYSTEM): Settings file found. Preferences Applied.
+2020-11-29 21:37:01 (SYSTEM): List of unactivated operators: 
+2020-11-29 21:37:03 (SYSTEM): Settings Changed
+2020-11-29 21:37:04 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:37:05 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:37:06 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:37:07 (SYSTEM): Settings Changed
+2020-11-29 21:37:07 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:37:08 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:37:09 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:37:10 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:37:11 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:37:11 (SYSTEM): Settings Changed
+2020-11-29 21:37:13 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:37:15 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:37:16 (SYSTEM): Settings Changed
+2020-11-29 21:38:50 (SYSTEM): Connection to database successful
+2020-11-29 21:38:51 (SYSTEM): Settings file found. Preferences Applied.
+2020-11-29 21:38:54 (SYSTEM): List of unactivated operators: 
+2020-11-29 21:38:55 (SYSTEM): Settings Changed
+2020-11-29 21:38:57 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:38:59 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:38:59 (SYSTEM): Settings Changed
+2020-11-29 21:39:27 (SYSTEM): Connection to database successful
+2020-11-29 21:39:27 (SYSTEM): Settings file found. Preferences Applied.
+2020-11-29 21:39:30 (SYSTEM): List of unactivated operators: 
+2020-11-29 21:39:35 (SYSTEM): Settings Changed
+2020-11-29 21:39:38 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:39:41 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
+2020-11-29 21:39:44 (SYSTEM): Settings Changed
+2020-11-29 21:39:50 (SYSTEM): Settings Changed
+2020-11-29 21:40:33 (SYSTEM): Connection to database successful
+2020-11-29 21:40:33 (SYSTEM): Settings file found. Preferences Applied.

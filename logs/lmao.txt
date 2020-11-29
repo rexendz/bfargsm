@@ -1,0 +1,5 @@
+2020-11-29 18:50:18 (SYSTEM): Connection to database successful
+2020-11-29 18:50:18 (SYSTEM): Activation Message File Found:
+[BFAR] This message is to notify you that your operator account in the BFAR System has been activated.
+
+Please do not reply to this number.

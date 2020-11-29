@@ -7,7 +7,8 @@ package MainWindow;
 
 import Entities.Account;
 import Entities.GSMUtil;
-import Window.ActivationContainer;
+import Entities.Options;
+import Window.PreferenceWindow;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
@@ -35,22 +36,33 @@ import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+import org.ini4j.Ini;
 
 /**
  *
  * @author rexen
  */
-public class MainWindow extends javax.swing.JFrame implements GSMUtil.NewDataListener, SMSContainer.smsListener, ActivationContainer.activationListener {
+public class MainWindow extends javax.swing.JFrame implements GSMUtil.NewDataListener, SMSContainer.smsListener, PreferenceWindow.preferenceListener {
 
+    private final long SECONDS = 1000;
+    private final long MINUTES = 60000;
+    private final long HOURS = 3600000;
     private final String serviceAccountDir = "service-key.json";
+    private String activationMessage;
+    private boolean autolog;
     javax.swing.JFrame frame;
     GSMUtil gsmUtil;
     List<Account> pendingAccounts;
     boolean started = false;
+    Timer timer;
+    static boolean timerStarted = false;
 
     /**
      * Creates new form MainWindow
@@ -60,23 +72,52 @@ public class MainWindow extends javax.swing.JFrame implements GSMUtil.NewDataLis
         DefaultCaret caret = (DefaultCaret) text_log.getCaret();
         caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
         initFirebase();
-        readFile();
+        if(initializeSettings())
+            logText("Settings file found. Preferences Applied.");
         gsmUtil = new GSMUtil(this);
-        this.setResizable(false);
     }
     
-    private void readFile() {
-        File f = new File("ACTIVATIONMESSAGE");
-        if (f.isFile()){
-            try{
-                String activationMessage = new String (Files.readAllBytes(Paths.get("ACTIVATIONMESSAGE")));
-                ActivationContainer.setActivationMessage(activationMessage);
-                logText("Activation Message File Found:\n" + activationMessage);
-            } catch(IOException e) {
-                e.printStackTrace();
+    private boolean initializeSettings(){
+        try {
+            File f = new File("settings.ini");
+            if(f.isFile()) {
+                Ini ini = new Ini(f);
+                Options.setAutoLog(ini.get("General", "AutoLog", boolean.class));
+                Options.setActivationMessage(ini.get("General", "ActivationMessage", String.class));
+                Options.setInterval(ini.get("Interval", "Hours", int.class), ini.get("Interval", "Minutes", int.class), ini.get("Interval", "Seconds", int.class));
+                if(Options.getAutoLog() && (Options.getHours() > 0 || Options.getMinutes() > 0 || Options.getSeconds() > 0))
+                    startAutoLog();
+                return true;
+            } else {
+                return false;
             }
+            
+        } catch (IOException ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
-        
+    }
+    
+    private void startAutoLog() {
+        timer = new Timer();
+        timerStarted = true;
+        long interval = Options.getHours()*HOURS + Options.getMinutes()*MINUTES + Options.getSeconds()*SECONDS;
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                if (timerStarted) {
+                    saveLogToFile(getDate(), false);
+                }
+            }
+        }, interval, interval);
+    }
+    
+    private void stopAutoLog() {
+        if(timerStarted) {
+            timer.cancel();
+            timer.purge();
+        }
+        timerStarted = false;
     }
 
     private void initFirebase() {
@@ -162,7 +203,7 @@ public class MainWindow extends javax.swing.JFrame implements GSMUtil.NewDataLis
     public void notifyUser(Account user){
         if(gsmUtil.isRunning()) {
             logText("Notifying " + user.getUsername() + "...\nSending notification to the number: " + user.getSim1());
-            gsmUtil.sendMessage(ActivationContainer.getActivationMessage(), user.getSim1());
+            gsmUtil.sendMessage(Options.getActivationMessage(), user.getSim1());
         } else {
             logText("GSM Server has not been started.\nCannot notify " + user.getUsername() + " that his/her account has been activated");
         }
@@ -172,6 +213,12 @@ public class MainWindow extends javax.swing.JFrame implements GSMUtil.NewDataLis
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
         return formatter.format(date);
+    }
+    
+    public String getDate() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 
     public void logText(String text) {
@@ -197,6 +244,21 @@ public class MainWindow extends javax.swing.JFrame implements GSMUtil.NewDataLis
         text_log.append("\n");
         text_log.append("DO_Level: " + do_level + "mg/L");
         text_log.append("\n");
+    }
+    
+    private void saveLogToFile(String name, boolean append){
+        String fileName = name + ".txt";
+        String directoryName = System.getProperty("user.dir").concat("\\logs");
+        File directory = new File(directoryName);
+        if (!directory.exists()){
+            directory.mkdir();
+        }
+        try (PrintWriter out = new PrintWriter(new FileWriter(directoryName + "/" + fileName, append))){
+            text_log.write(out);
+            logText("Log saved as " + directoryName + "\\" +  fileName);
+        } catch (IOException e){
+            System.err.println("Error occurred: " + e);
+        }
     }
 
     /**
@@ -233,6 +295,7 @@ public class MainWindow extends javax.swing.JFrame implements GSMUtil.NewDataLis
         setMaximumSize(new java.awt.Dimension(586, 411));
         setMinimumSize(new java.awt.Dimension(586, 411));
         setPreferredSize(new java.awt.Dimension(586, 411));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -392,7 +455,7 @@ public class MainWindow extends javax.swing.JFrame implements GSMUtil.NewDataLis
         });
         jMenu1.add(jMenuItem2);
 
-        jMenuItem3.setText("Change Activation Message");
+        jMenuItem3.setText("Options");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
@@ -469,6 +532,7 @@ public class MainWindow extends javax.swing.JFrame implements GSMUtil.NewDataLis
             do {
             } while (gsmUtil.portIsOpen());
         }
+        saveLogToFile("log", true);
         System.exit(0);
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -481,19 +545,12 @@ public class MainWindow extends javax.swing.JFrame implements GSMUtil.NewDataLis
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        
-        try (PrintWriter out = new PrintWriter(new FileWriter("log.txt"))){
-            text_log.write(out);
-            logText("Log saved as " + System.getProperty("user.dir") + "\\log.txt");
-        } catch (IOException e){
-            System.err.println("Error occurred: " + e);
-        }
-        
-        
+        String fileName = JOptionPane.showInputDialog(this, "Enter File Name");
+        saveLogToFile(fileName, false);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        new ActivationContainer(this).setVisible(true);
+        new PreferenceWindow(this).setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
@@ -579,13 +636,21 @@ public class MainWindow extends javax.swing.JFrame implements GSMUtil.NewDataLis
     }
 
     @Override
-    public void onSet(String message) {
-        logText("Activation Message changed to:\n" + message);
+    public void onSave() {
+        logText("Settings Changed");
+        if (Options.getAutoLog()) {
+            if (Options.getHours() > 0 || Options.getMinutes() > 0 || Options.getSeconds() > 0) {
+                stopAutoLog();
+                startAutoLog();
+            }
+        } else {
+            stopAutoLog();
+        }
     }
 
     @Override
     public void onReset() {
-        logText("Activation Message has been reset");
+        
     }
 
 }

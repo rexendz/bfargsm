@@ -1,0 +1,5 @@
+2020-11-29 21:39:27 (SYSTEM): Connection to database successful
+2020-11-29 21:39:27 (SYSTEM): Settings file found. Preferences Applied.
+2020-11-29 21:39:30 (SYSTEM): List of unactivated operators: 
+2020-11-29 21:39:35 (SYSTEM): Settings Changed
+2020-11-29 21:39:38 (SYSTEM): Log saved as C:\Users\rexen\Documents\NetBeansProjects\GSMServer\logs\2020-11-29.txt
