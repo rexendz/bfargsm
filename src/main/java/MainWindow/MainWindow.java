@@ -74,6 +74,8 @@ public class MainWindow extends javax.swing.JFrame implements GSMUtil.NewDataLis
         initFirebase();
         if(initializeSettings())
             logText("Settings file found. Preferences Applied.");
+        else
+            
         gsmUtil = new GSMUtil(this);
     }
     

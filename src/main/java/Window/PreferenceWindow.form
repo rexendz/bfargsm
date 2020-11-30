@@ -186,6 +186,7 @@
             </Property>
             <Property name="lineWrap" type="boolean" value="true"/>
             <Property name="rows" type="int" value="5"/>
+            <Property name="text" type="java.lang.String" value="[BFAR] This message is to notify you that your operator account in the BFAR System has been activated.&#xa;&#xa;Please do not reply to this number."/>
           </Properties>
         </Component>
       </SubComponents>

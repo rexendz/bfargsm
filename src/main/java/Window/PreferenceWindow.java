@@ -115,6 +115,7 @@ public class PreferenceWindow extends javax.swing.JFrame {
         jTextArea1.setFont(new java.awt.Font("Consolas", 0, 13)); // NOI18N
         jTextArea1.setLineWrap(true);
         jTextArea1.setRows(5);
+        jTextArea1.setText("[BFAR] This message is to notify you that your operator account in the BFAR System has been activated.\n\nPlease do not reply to this number.");
         jScrollPane1.setViewportView(jTextArea1);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
