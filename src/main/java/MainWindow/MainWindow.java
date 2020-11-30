@@ -316,7 +316,7 @@ public class MainWindow extends javax.swing.JFrame implements GSMUtil.NewDataLis
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -489,21 +489,31 @@ public class MainWindow extends javax.swing.JFrame implements GSMUtil.NewDataLis
                 try {
                     SwingUtilities.invokeAndWait(() -> {
                         jButton1.setEnabled(false);
+                        jButton2.setEnabled(false);
+                        jLabel2.setText("STARTING...");
+                        jLabel2.setForeground(Color.orange);
+
+                    });
+                } catch (InterruptedException | InvocationTargetException ex) {
+                    Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                logText("Setting up GSM Server...");
+                logText("Checking Signal Strength...");
+                gsmUtil.writeGSM("AT+CSQ");
+                logText("Setting GSM to RECEIVING MODE...");
+                gsmUtil.setReceivingMode();
+                logText("Server Started!");
+                try {
+                    SwingUtilities.invokeAndWait(() -> {
+                        jButton1.setEnabled(false);
                         jButton2.setEnabled(true);
                         jLabel2.setText("RUNNING");
                         jLabel2.setForeground(Color.green);
 
                     });
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (InvocationTargetException ex) {
+                } catch (InterruptedException | InvocationTargetException ex) {
                     Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                logText("Server Started!");
-                logText("Checking Signal Strength...");
-                gsmUtil.writeGSM("AT+CSQ");
-                logText("Setting GSM to RECEIVING MODE...");
-                gsmUtil.setReceivingMode();
             }
         });
         t.start();

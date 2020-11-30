@@ -198,3 +198,66 @@ Please do not reply to this number.
 2020-11-29 21:39:50 (SYSTEM): Settings Changed
 2020-11-29 21:40:33 (SYSTEM): Connection to database successful
 2020-11-29 21:40:33 (SYSTEM): Settings file found. Preferences Applied.
+2020-11-30 18:12:04 (SYSTEM): Connection to database successful
+2020-11-30 18:12:04 (SYSTEM): Settings file found. Preferences Applied.
+2020-11-30 18:12:09 (SYSTEM): Setting up GSM Server...
+2020-11-30 18:12:09 (SYSTEM): Checking Signal Strength...
+2020-11-30 18:12:09 (GSM): AT+CSQ
++CSQ: 23,0
+
+OK
+
+2020-11-30 18:12:09 (SYSTEM): List of unactivated operators: 
+2020-11-30 18:12:10 (SYSTEM): Server Started!
+2020-11-30 18:12:10 (SYSTEM): Setting GSM to RECEIVING MODE...
+2020-11-30 18:12:10 (GSM): AT+CMGF=1
+OK
+
+2020-11-30 18:12:11 (GSM): AT+CNMI=1,2,0,0,0
+OK
+
+2020-11-30 18:12:12 (SYSTEM): Waiting for SMS...
+2020-11-30 18:12:26 (SYSTEM): Closing Port...
+2020-11-30 18:12:45 (SYSTEM): Connection to database successful
+2020-11-30 18:12:46 (SYSTEM): Settings file found. Preferences Applied.
+2020-11-30 18:12:48 (SYSTEM): Setting up GSM Server...
+2020-11-30 18:12:48 (SYSTEM): Checking Signal Strength...
+2020-11-30 18:12:48 (GSM): AT+CSQ
++CSQ: 23,0
+
+OK
+
+2020-11-30 18:12:49 (SYSTEM): Setting GSM to RECEIVING MODE...
+2020-11-30 18:12:49 (GSM): AT+CMGF=1
+OK
+
+2020-11-30 18:12:50 (SYSTEM): List of unactivated operators: 
+2020-11-30 18:12:50 (GSM): AT+CNMI=1,2,0,0,0
+OK
+
+2020-11-30 18:12:50 (SYSTEM): Waiting for SMS...
+2020-11-30 18:12:50 (SYSTEM): Server Started!
+2020-11-30 18:12:57 (SYSTEM): Closing Port...
+2020-11-30 18:12:57 (SYSTEM): Server Stopped!
+2020-11-30 18:12:59 (SYSTEM): Setting up GSM Server...
+2020-11-30 18:12:59 (SYSTEM): Checking Signal Strength...
+2020-11-30 18:12:59 (GSM): AT+CSQ
++CSQ: 23,0
+
+OK
+
+2020-11-30 18:12:59 (SYSTEM): Setting GSM to RECEIVING MODE...
+2020-11-30 18:12:59 (GSM): AT+CMGF=1
+OK
+
+2020-11-30 18:13:00 (GSM): AT+CNMI=1,2,0,0,0
+OK
+
+2020-11-30 18:13:01 (SYSTEM): Waiting for SMS...
+2020-11-30 18:13:01 (SYSTEM): Server Started!
+2020-11-30 18:13:02 (SYSTEM): Closing Port...
+2020-11-30 18:13:02 (SYSTEM): Server Stopped!
+2020-11-30 18:13:12 (SYSTEM): Settings Changed
+2020-11-30 18:13:42 (SYSTEM): Connection to database successful
+2020-11-30 18:13:42 (SYSTEM): Settings file found. Preferences Applied.
+2020-11-30 18:13:48 (SYSTEM): List of unactivated operators: 
